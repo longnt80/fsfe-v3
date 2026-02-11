@@ -10,6 +10,7 @@ RUN npm ci
 FROM deps AS build-client
 COPY client/ client/
 COPY tsconfig.base.json .
+ENV NODE_OPTIONS="--max-old-space-size=512"
 RUN npm run build --workspace=client
 
 # Stage 3: Build server
